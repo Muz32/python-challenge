@@ -1,6 +1,6 @@
 import os
 import csv
-csvpath = r"C:\Users\Muz\python-challenge\PyBank\resources\budget_data.csv"
+csvpath = os.path.join ('resources', 'budget_data.csv')
 
  # Define the function to count the total number of months in the dataset
 def count_months(budgetdata):
@@ -67,6 +67,7 @@ with open(csvpath) as csvfile:
     print ("Financial Analysis\n")
 
     print ("----------------------------\n")
+    
     #Call the function and print the result
     
     total_months = count_months(data)
@@ -84,7 +85,7 @@ with open(csvpath) as csvfile:
     greatest_decrease, greatest_decrease_date = find_greatest_decrease(changes, data)
     print(f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})\n")
 # Open a text file for writing
-    output_file_path = r"C:\Users\Muz\python-challenge\PyBank\analysis\PybankResults.txt"
+    output_file_path = os.path.join("analysis", "PybankResults.txt")
     with open(output_file_path, "w") as PyBankResults_file:
         # Write the results to the file
         PyBankResults_file.write("Financial Analysis\n")
