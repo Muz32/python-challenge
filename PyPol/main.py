@@ -1,66 +1,49 @@
 import os
 import csv
-csvpath = os.path.join ("resources", "election_data.csv")
 
+csvpath = os.path.join("resources", "election_data.csv")
 
-#Define the function to find the list of canditaes who received the votes
+# Define the function to find the list of candidates who received the votes
 def candidate_list(electiondata):
     candidates = {}
     total_votes = 0
     for row in electiondata:
         candidate_name = row[2]
-        if candidate_name not in candidates:
-            candidates[candidate_name] = 1
-        else:
-            candidates[candidate_name] += 1
-        total_votes +=1
-    for candidate in candidates:
-        candidates[candidate] = (candidates[candidate], candidates[candidate] / total_votes * 100)
-    return candidates
-   
-       
-# Open the CSV file and define parameters of data to use in functions  
+        candidates[candidate_name] = candidates.get(candidate_name, 0) + 1
+        total_votes += 1
+    return {candidate: (votes, votes / total_votes * 100) for candidate, votes in candidates.items()}
+
+# Open the CSV file and extract data
 with open(csvpath) as csvfile:
     electiondata = list(csv.reader(csvfile, delimiter=','))
+    header, data = electiondata[0], electiondata[1:]
 
-    #Assign the header row to variable 'header' and store the remaining rows (actual data) in the variable 'data'. 
-    #This extracts the header row, and separates the data rows into a list. 
-    header = electiondata[0]
-    data = electiondata[1:]
+# Print results
+print("Election Results\n--------------------------\n")
 
-    print ("Election Results\n")
-    print ("--------------------------------\n")
-   
-   #Call the function to print the results
-    Results = candidate_list(data)
+#Call the function to print the results
+results = candidate_list(data)
 
+total_votes = sum(votes for votes, _ in results.values())
+print(f"Total votes: {total_votes}\n\n--------------------------\n\n")
 
-    #Print total votes cast
-    print(f"Total votes cast:", sum(count for count, _ in Results.values()), "\n")
-    print ("--------------------------------\n")
-    
-#Print candidate name with their respective votes and percentage of votes
-for candidate, (votes, percentage) in Results.items():
+# Print candidate names with their respective votes and percentage of votes
+for candidate, (votes, percentage) in results.items():
     print(f"{candidate}: {percentage:.3f}% ({votes})\n")
 
-# Print candidate with the highest votes (winner)
-print ("--------------------------------\n")
-max_candidate = max(Results, key=lambda x: Results[x][0])
-print(f"Winner:", max_candidate, "\n")
+# Print the winner
+    winner = max(results, key=lambda x: results[x][0])
+print(f"--------------------------\n\nWinner: {winner}\n\n--------------------------")
 
-print ("--------------------------------\n") 
-
-
-# Open a text file for writing
+# Write results to a text file
+    
 output_file_path = os.path.join("analysis", "PyPolResults.txt")
+
 with open(output_file_path, "w") as PyPolResults_file:
-    #Write the results to the file
-    PyPolResults_file.write ("Election Results\n")
-    PyPolResults_file.write ("--------------------------------\n")
-    PyPolResults_file.write (f"Total votes cast:", sum(count for count, _ in Results.values()), "\n")
-    PyPolResults_file.write ("--------------------------------\n")
-    PyPolResults_file.write (f"{candidate}: {percentage:.3f}% ({votes})\n")
-    PyPolResults_file.write ("--------------------------------\n")
-    PyPolResults_file.write (f"Winner:", {max_candidate}, "\n")
-    PyPolResults_file.write ("--------------------------------\n") 
-   
+    PyPolResults_file.write("Election Results\n\n--------------------------\n\n")
+    PyPolResults_file.write(f"Total Votes: {total_votes}\n\n--------------------------\n\n")
+       
+    for candidate, (votes, percentage) in results.items():
+        PyPolResults_file.write(f"{candidate}: {percentage:.3f}% ({votes})\n\n")
+    
+    PyPolResults_file.write(f"--------------------------\n\nWinner: {winner}\n\n--------------------------")

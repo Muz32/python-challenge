@@ -24,6 +24,7 @@ def Sum_ProfitsLosses (budgetdata):
         total_ProfitsLosses += int(row[1])
 
     return total_ProfitsLosses
+
 # Define function to calculate changes in profits and losses and average of those changes
 def calculate_changes_and_average(budgetdata):
     changes = []
@@ -40,35 +41,33 @@ def calculate_changes_and_average(budgetdata):
     average_change = sum(changes) / len(changes) if len(changes) > 0 else 0
 
     return changes, average_change
-#To find the greatest increase in profits and losses
 
+#To find the greatest increase in profits and losses
 def find_greatest_increase(changes, budgetdata):
     greatest_increase = max(changes)
     greatest_increase_index = changes.index(greatest_increase)
-    greatest_increase_date = budgetdata[greatest_increase_index + 1][0]  # Adding 1 to account for skipping header row
+    greatest_increase_date = budgetdata[greatest_increase_index + 1][0]  # Adding 1 to skip header row. [0]Retrieves the date associated with the greatest increase
 
     return greatest_increase, greatest_increase_date
 
 #To find the greatest decrase in profits and losses
-
 def find_greatest_decrease(changes, budgetdata):
     greatest_decrease = min (changes)
     greatest_decrease_index = changes.index(greatest_decrease)
-    greatest_decrease_date = budgetdata[greatest_decrease_index + 1][0]  # Adding 1 to account for skipping header row
+    greatest_decrease_date = budgetdata[greatest_decrease_index + 1][0]  # Adding 1 to skip header row. [0]Retrieves the date associated with the greatest decrease
 
     return greatest_decrease, greatest_decrease_date
 
-# Open the CSV file and use the function
+# Open the CSV file and set parameters to use when calling functions
 with open(csvpath) as csvfile:
     budgetdata = list(csv.reader(csvfile, delimiter=','))
     header = budgetdata[0]
     data = budgetdata[1:]
 
-    print ("Financial Analysis\n")
-
-    print ("----------------------------\n")
     
-    #Call the function and print the result
+    print ("Financial Analysis\n\n----------------------------\n\n")
+    
+    #Call the Function and Print the result
     
     total_months = count_months(data)
     print(f"Total Months: {total_months}\n")
@@ -84,16 +83,17 @@ with open(csvpath) as csvfile:
 
     greatest_decrease, greatest_decrease_date = find_greatest_decrease(changes, data)
     print(f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})\n")
-# Open a text file for writing
+
+# Open a text file for writing results
     output_file_path = os.path.join("analysis", "PybankResults.txt")
     with open(output_file_path, "w") as PyBankResults_file:
-        # Write the results to the file
-        PyBankResults_file.write("Financial Analysis\n")
-        PyBankResults_file.write("------------------\n")
-        PyBankResults_file.write(f"Total Months: {total_months}\n")
-        PyBankResults_file.write(f"Total: ${total_ProfitsLosses}\n")
-        PyBankResults_file.write(f"Average Change: ${round(average_change, 2)}\n")
-        PyBankResults_file.write(f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase})\n")
-        PyBankResults_file.write(f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})\n")
+       
+        #Write the results to the file
+        PyBankResults_file.write("Financial Analysis\n\n----------------------------\n\n")
+        PyBankResults_file.write(f"Total Months: {total_months}\n\n")
+        PyBankResults_file.write(f"Total: ${total_ProfitsLosses}\n\n")
+        PyBankResults_file.write(f"Average Change: ${round(average_change, 2)}\n\n")
+        PyBankResults_file.write(f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase})\n\n")
+        PyBankResults_file.write(f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})\n\n")
 
     print(f"Results exported to '{output_file_path}'")
