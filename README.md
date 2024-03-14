@@ -11,7 +11,7 @@ When executed, the script calculates and prints the following financial analysis
 -Greatest decrease in profits
 
 2. Pypoll Subfolder:
-The second subfolder, houses another Python script to calculate election results.
+This subfolder, houses a Python script to calculate election results.
 This script analyses election results from the provided data in the 'resources' folder.
 Upon execution, it calculates and prints the following election analysis:
 -Total votes cast
@@ -22,4 +22,16 @@ Upon execution, it calculates and prints the following election analysis:
 
 Both scripts conclude by exporting their output to a text file within the relevant analysis folders. 
 
-**Please note: As the python script reads data files using relative file references from a different folder, there maybe be occcurance of "File Not Found Error" when executing the code. To minimise this error, please downnload entire repository and open relevant folders directly from the Visual Studio (VS) code application. Use the 'open folder' option in VS code to view files. I notice that with my computer, opening the python file from the windows menu in VS code gives 'file not found error' when exceuting the code. It could be that VS code does not recognise that the file was opened from a folder so it would fail to locate and read files to extract data. I found out that if the status bar at the bottom of VS code application is purple, it means no folder is currently open in the workspace even though if you opened a file that was inside a folder. Only if the status bar is blue, it recognises that a folder or workspace is open. In order to see the blue bar, I have to open the folder from the VS code application. Then only I don't get errors on reading or writing files. 
+
+** Please note: The Python script relies on relative file references from a different folder, which may result in "File Not Found" errors during execution. Based on my experience with my computer, I have found out that the following prevents this issue from occuring:
+
+-Download the entire repository and open the relevant folders directly from Visual Studio (VS) Code.
+
+-Use the 'Open Folder' option in VS Code to open the 'Pybank' or 'Pypol' subfolders individually. Then click the python file ('main.py') in the epxlorer pane on the left to see the code and execute it. Ensure to open each subfolder in a new window and avoid opening both simultaneously in one window. 
+
+-Avoid opening files directly from your computer system menu of folders, as it may trigger the 'File Not Found' error when exceuting the code. Instead, ensure that you open the folder directly from within VS Code.
+
+-Check the colour of status bar at the bottom in VS code: If it's purple, no folder is recognized in the workspace. Only when it's blue does VS Code recognises an open folder or workspace.
+
+If you also encounter the "File Not Found Error" problem, please follow the above guide to troubleshoot the problem effectively.  
+
