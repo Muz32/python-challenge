@@ -20,7 +20,7 @@ Upon execution, it calculates and prints the following election analysis:
 -Result for the winner of the election
 
 
-Both scripts conclude by exporting their output to a text file within the relevant analysis folders. 
+Both scripts conclude by exporting their output to a text file within the relevant analysis folders. The data sets used in this challenge was provided by edX Boot Camps LLC. 
 
 
 ** Please note:** The Python script relies on relative file references from a different folder, which may result in "File Not Found" errors during execution. Based on my experience with my computer, I have found out that the following prevents this issue from occuring:
