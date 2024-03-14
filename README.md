@@ -23,7 +23,7 @@ Upon execution, it calculates and prints the following election analysis:
 Both scripts conclude by exporting their output to a text file within the relevant analysis folders. 
 
 
-** Please note:** The Python script relies on relative file references from a different folder, which may result in "File Not Found" errors during execution. Based on my experience with my computer, I have found out that the following prevents this issue from occuring:
+** Please note** The Python script relies on relative file references from a different folder, which may result in "File Not Found" errors during execution. Based on my experience with my computer, I have found out that the following prevents this issue from occuring:
 
 -Download the entire repository and open the relevant folders directly from Visual Studio (VS) Code.
 
