@@ -1,5 +1,5 @@
 # python-challenge
-This assignment challenge contains two different Analysis stored in two diffrent subfolders within the repository. 
+This assignment challenge contains two different analysis stored in two diffrent subfolders within the repository. 
 
 1. Pybank Subfolder:
 This subfolder contains a Python script that analyzes financial data from a given CSV file located in the 'resources' folder.
@@ -23,7 +23,7 @@ Upon execution, it calculates and prints the following election analysis:
 Both scripts conclude by exporting their output to a text file within the relevant analysis folders. The data sets used in this challenge was provided by edX Boot Camps LLC. 
 
 
-** Please note:** The Python script relies on relative file references from a different folder, which may result in "File Not Found" errors during execution. Based on my experience with my computer, I have found out that the following prevents this issue from occuring:
+** Please note:** The Python script relies on relative file references from a different folder, which may result in "File Not Found" errors during execution. Based on my experience with my computer, I have found out that the following giude prevents this issue from occuring:
 
 -Download the entire repository and open the relevant folders directly from Visual Studio (VS) Code.
 
@@ -33,5 +33,5 @@ Both scripts conclude by exporting their output to a text file within the releva
 
 -Check the colour of status bar at the bottom in VS code: If it's purple, no folder is recognized in the workspace. Only when it's blue does VS Code recognises an open folder or workspace.
 
-If you also encounter the "File Not Found Error" problem, please follow the above guide to troubleshoot the problem effectively.  
+I trust the above guide wil help troubleshoot the problem effectively.  
 
